@@ -1,5 +1,8 @@
 import client from '../database'
+import bcrypt, { compareSync } from 'bcrypt'
 
+const saltRounds = process.env.SALT_ROUNDS!
+const pepper = process.env.BCRYPT_PASSWORD
 export type User = {
     id?:string;
     firstName:string;
@@ -47,12 +50,30 @@ export class UserHub{
             //@ts-ignore
             const conn = await client.connect()
             const sql = 'INSERT INTO users(first_name,last_name,password_digest) VALUES($1,$2,$3) RETURNING *'
-            const result = await conn.query(sql,[u.firstName,u.lastName,u.password])
+            const hash = bcrypt.hashSync(
+                u.password + pepper,
+                parseInt(saltRounds)
+            )
+            const result = await conn.query(sql,[u.firstName,u.lastName,hash])
             conn.release()
 
             return result.rows[0]
         }catch(err){
             throw new Error(`Could not add user ${u.firstName}`)
         }
+    }
+
+    async authenticate(first_name:string,password:string):Promise<User | null>{
+        const conn = await client.connect()
+        const sql = 'SELECT password_digest FROM users WHERE first_name=($1)'
+        const result = await conn.query(sql,[first_name])
+        if(result.rows.length){
+            const user = result.rows[0]
+            if(bcrypt.compareSync(password+pepper,user.password_digest)){
+                console.log('authenticated')
+                return user
+            }
+        }
+        return null
     }
 }

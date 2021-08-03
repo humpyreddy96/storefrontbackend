@@ -23,10 +23,16 @@ const create = async(req:Request,res:Response)=>{
     res.json(new_user)
 }
 
+const auth = async(req:Request,res:Response)=>{
+    const auth_user = await user_data.authenticate(req.body.firstname,req.body.password)
+    res.json(auth_user)
+}
+
 const user_routes = (app:express.Application) =>{
     app.get('/users',index)
     app.get('/users/:id',show)
     app.post('/users',create)
+    app.post('/users/auth',auth)
 }
 
 export default user_routes
