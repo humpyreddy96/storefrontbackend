@@ -64,16 +64,22 @@ export class UserHub{
     }
 
     async authenticate(first_name:string,password:string):Promise<User | null>{
-        const conn = await client.connect()
-        const sql = 'SELECT password_digest FROM users WHERE first_name=($1)'
-        const result = await conn.query(sql,[first_name])
-        if(result.rows.length){
-            const user = result.rows[0]
-            if(bcrypt.compareSync(password+pepper,user.password_digest)){
-                console.log('authenticated')
-                return user
+
+        try{
+            const conn = await client.connect()
+            const sql = 'SELECT first_name,password_digest FROM users WHERE first_name=($1)'
+            const result = await conn.query(sql,[first_name])
+            if(result.rows.length){
+                const user = result.rows[0]
+                if(bcrypt.compareSync(password+pepper,user.password_digest)){
+                    console.log('authenticated')
+                    return user
+                }
             }
+            return null
+        }catch(err){
+            throw new Error (`Could not authenticate the user ${first_name}`)
         }
-        return null
+        
     }
 }

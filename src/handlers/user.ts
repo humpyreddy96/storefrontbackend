@@ -1,5 +1,7 @@
 import express, {Request,Response} from 'express'
 import {User,UserHub} from '../models/user'
+import jwt from 'jsonwebtoken'
+import verifyAuthToken from './verifyAuthToken'
 
 const user_data = new UserHub()
 
@@ -19,19 +21,30 @@ const create = async(req:Request,res:Response)=>{
         lastName:req.body.lastname,
         password:req.body.password
     }
-    const new_user = await user_data.create(user);
-    res.json(new_user)
+    const new_user = await user_data.create(user)
+     res.json(new_user)
+   
+   
 }
 
 const auth = async(req:Request,res:Response)=>{
-    const auth_user = await user_data.authenticate(req.body.firstname,req.body.password)
-    res.json(auth_user)
+    const user = {
+        firstName:req.body.firstname,
+        lastName:req.body.lastname,
+        password:req.body.password
+    } 
+    const authUser = await user_data.authenticate(user.firstName,user.password)
+    var token = jwt.sign({user:authUser},process.env.TOKEN_SECRET!)
+    res.json({'token':token})
+       
 }
+   
 
 const user_routes = (app:express.Application) =>{
-    app.get('/users',index)
-    app.get('/users/:id',show)
+
     app.post('/users',create)
+    app.get('/users/all',verifyAuthToken,index)
+    app.get('/users/:id',verifyAuthToken,show)
     app.post('/users/auth',auth)
 }
 
