@@ -43,8 +43,8 @@ const auth = async(req:Request,res:Response)=>{
 const user_routes = (app:express.Application) =>{
 
     app.post('/users',create)
-    app.get('/users/all',verifyAuthToken,index)
-    app.get('/users/:id',verifyAuthToken,show)
+    app.get('/users/all',index)
+    app.get('/users/:id',show)
     app.post('/users/auth',auth)
 }
 
