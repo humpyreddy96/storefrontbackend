@@ -16,8 +16,8 @@ const show = async (req, res) => {
 };
 const create = async (req, res) => {
     const user = {
-        firstName: req.body.firstname,
-        lastName: req.body.lastname,
+        first_name: req.body.firstname,
+        last_name: req.body.lastname,
         password: req.body.password
     };
     const new_user = await user_data.create(user);

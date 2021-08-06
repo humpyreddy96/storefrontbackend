@@ -1,3 +1,4 @@
+
 CREATE TABLE If NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(100),
