@@ -1,7 +1,7 @@
 import client from '../database'
 
 export type Order = {
-    id?:string;
+    id?:number;
     product_id:number;
     quantity:number;
     user_id:number;
@@ -40,7 +40,7 @@ export class OrderStore{
 
         try{
             const conn = await client.connect()
-            const sql = 'INSERT INTO orders (product_id,quantity,user_id,status) VALUES($1,$2,$3,$4) RETURNING *'
+            const sql = 'INSERT INTO orders (product_id,quantity,user_id,status) VALUES($1,$2,$3,$4) RETURNING id,status,user_id'
             const result = await conn.query(sql,[o.product_id,o.quantity,o.user_id,o.status])
             conn.release()
             return result.rows[0]

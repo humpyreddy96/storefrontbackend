@@ -17,8 +17,8 @@ const show = async(req:Request,res:Response)=>{
 
 const create = async(req:Request,res:Response)=>{
     const user = {
-        first_name:req.body.firstname,
-        last_name:req.body.lastname,
+        first_name:req.body.first_name,
+        last_name:req.body.last_name,
         password:req.body.password
     }
     const new_user = await user_data.create(user)
@@ -29,11 +29,11 @@ const create = async(req:Request,res:Response)=>{
 
 const auth = async(req:Request,res:Response)=>{
     const user = {
-        firstName:req.body.firstname,
-        lastName:req.body.lastname,
+        first_name:req.body.first_name,
+        last_name:req.body.last_name,
         password:req.body.password
-    } 
-    const authUser = await user_data.authenticate(user.firstName,user.password)
+    }
+    const authUser = await user_data.authenticate(user.first_name,user.password)
     var token = jwt.sign({user:authUser},process.env.TOKEN_SECRET!)
     res.json({'token':token})
        

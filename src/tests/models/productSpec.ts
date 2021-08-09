@@ -29,14 +29,23 @@ describe('Product Model',()=>{
         });
     })
 
-    // it('index method should return list', async() => {
-    //     const result = await store.index();
-    //     expect(result).toEqual([{
-    //         id:1,
-    //         name: 'spoon',
-    //         price: 10,
-    //         category: 'utensil'
-    //     }])
-    // })
+    it('index method should return list', async() => {
+        const result = await store.index();
+        expect(result).toEqual([{
+            id:1,
+            name: 'spoon',
+            price: 10,
+            category: 'utensil'
+        }])
+    })
 
+    it('show method should return single product', async () => {
+        const result = await store.show('1');
+        expect(result).toEqual({
+            id:1,
+            name: 'spoon',
+            price: 10,
+            category: 'utensil'
+        })
+    })
 })

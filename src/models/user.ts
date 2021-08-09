@@ -75,6 +75,8 @@ export class UserHub{
                 if(bcrypt.compareSync(password+pepper,user.password_digest)){
                     console.log('authenticated')
                     return user
+                }else{
+                    console.log('incorrect password')
                 }
             }
             return null
