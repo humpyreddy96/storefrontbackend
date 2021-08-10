@@ -1,5 +1,5 @@
 # StoreFrontBackend
----
+
 This application is the backend support with functionalities such as the following
 - creating an user
 - authenticating an user
@@ -7,7 +7,7 @@ This application is the backend support with functionalities such as the followi
 - showing products and orders
 - misc dashboard features
 
----
+
 
 ## Prerequisite
 
@@ -25,12 +25,12 @@ TOKEN_SECRET=aloha123!
 POSTGRES_DB_TEST=test_store
 ENV=dev
 ```
----
+
 ## Installations
 Install Dependencies
 - `yarn install`
 - `db-migrate up`
----
+
 ## Testing
 - `yarn run test`
 
