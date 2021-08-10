@@ -38,4 +38,5 @@ Install Dependencies
 - `yarn run start`
 
 ## API List
+
     1. Create a new user (Method: POST)
