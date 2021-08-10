@@ -23,8 +23,8 @@ BCRYPT_PASSWORD=secret
 SALT_ROUNDS=10
 TOKEN_SECRET=aloha123!
 POSTGRES_DB_TEST=test_store
-ENV=dev```
-
+ENV=dev
+```
 ---
 ## Installations
 Install Dependencies
