@@ -39,4 +39,4 @@ Install Dependencies
 
 ## API List
 
-    1. Create a new user (Method: POST)
+ 1. Create a new user (Method: POST)
