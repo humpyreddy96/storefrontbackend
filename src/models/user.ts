@@ -55,7 +55,6 @@ export class UserHub{
                 parseInt(saltRounds)
             )
             const result = await conn.query(sql,[u.first_name,u.last_name,hash])
-            console.log(result)
             conn.release()
 
             return result.rows[0]
