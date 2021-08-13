@@ -3,6 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const product_1 = require("../../models/product");
 const store = new product_1.ProductsStore();
 describe('Product Model', () => {
+    beforeAll(async () => {
+        await store.create({
+            name: 'spoon',
+            price: 10,
+            category: 'utensil'
+        });
+    });
     it('should have index method', () => {
         expect(store.index).toBeDefined();
     });

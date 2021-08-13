@@ -3,6 +3,15 @@ import {Product, ProductsStore} from '../../models/product'
 const store = new ProductsStore()
 
 describe('Product Model',()=>{
+
+    beforeAll(async()=>{
+        await store.create({
+            name: 'spoon',
+            price: 10,
+            category: 'utensil'
+        })
+    })
+
     it('should have index method', () => {
         expect(store.index).toBeDefined();
     })
