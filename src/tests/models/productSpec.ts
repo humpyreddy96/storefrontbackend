@@ -8,7 +8,7 @@ describe('Product Model',()=>{
         await store.create({
             name: 'spoon',
             price: 10,
-            category: 'utensil'
+            category: 'kitchen'
         })
     })
 
@@ -28,13 +28,13 @@ describe('Product Model',()=>{
         const result = await store.create({
             name: 'spoon',
             price: 10,
-            category: 'utensil'
+            category: 'kitchen'
         })
         expect(result).toEqual({
-            id:1,
+            id:2,
             name: 'spoon',
             price: 10,
-            category: 'utensil'
+            category: 'kitchen'
         });
     })
 
@@ -44,7 +44,7 @@ describe('Product Model',()=>{
             id:1,
             name: 'spoon',
             price: 10,
-            category: 'utensil'
+            category: 'kitchen'
         }])
     })
 
@@ -54,7 +54,7 @@ describe('Product Model',()=>{
             id:1,
             name: 'spoon',
             price: 10,
-            category: 'utensil'
+            category: 'kitchen'
         })
     })
 })
