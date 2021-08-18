@@ -10,7 +10,7 @@ class ProductsStore {
         try {
             //@ts-ignore
             const conn = await database_1.default.connect();
-            const sql = 'SELECT * FROM products';
+            const sql = 'SELECT category FROM products';
             const result = await conn.query(sql);
             conn.release();
             return result.rows;

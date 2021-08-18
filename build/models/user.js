@@ -41,7 +41,7 @@ class UserHub {
         try {
             //@ts-ignore
             const conn = await database_1.default.connect();
-            const sql = 'INSERT INTO users(first_name,last_name,password_digest) VALUES($1,$2,$3) RETURNING first_name,last_name';
+            const sql = 'INSERT INTO users(first_name,last_name,password_digest) VALUES($1,$2,$3) RETURNING  first_name,last_name';
             const hash = bcrypt_1.default.hashSync(u.password + pepper, parseInt(saltRounds));
             const result = await conn.query(sql, [u.first_name, u.last_name, hash]);
             conn.release();

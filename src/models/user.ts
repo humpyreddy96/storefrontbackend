@@ -4,7 +4,7 @@ import bcrypt, { compareSync } from 'bcrypt'
 const saltRounds = process.env.SALT_ROUNDS!
 const pepper = process.env.BCRYPT_PASSWORD
 export type User = {
-    id?:string;
+    id?:number;
     first_name:string;
     last_name:string;
     password?:string;
@@ -49,7 +49,7 @@ export class UserHub{
         try{
             //@ts-ignore
             const conn = await client.connect()
-            const sql = 'INSERT INTO users(first_name,last_name,password_digest) VALUES($1,$2,$3) RETURNING first_name,last_name'
+            const sql = 'INSERT INTO users(first_name,last_name,password_digest) VALUES($1,$2,$3) RETURNING  first_name,last_name'
             const hash = bcrypt.hashSync(
                 u.password! + pepper,
                 parseInt(saltRounds)
@@ -85,3 +85,4 @@ export class UserHub{
         
     }
 }
+

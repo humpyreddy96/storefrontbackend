@@ -1,40 +1,126 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const user_1 = require("../../models/user");
+const database_1 = __importDefault(require("../../database"));
+const supertest_1 = __importDefault(require("supertest"));
+const server_1 = __importDefault(require("../../server"));
 const store = new user_1.UserHub();
+const request = supertest_1.default(server_1.default);
+let userToken = '';
 describe('User Model', () => {
-    it('should have an index method', () => {
-        expect(store.index).toBeDefined();
+    describe('Test methods exist', () => {
+        it('should have an index method', () => {
+            expect(store.index).toBeDefined();
+        });
+        it('should have show method', () => {
+            expect(store.show).toBeDefined();
+        });
+        it('should have create method', () => {
+            expect(store.create).toBeDefined();
+        });
+        it('Authenticate method should return authenticated user', async () => {
+            const result = await store.authenticate('Test', 'test123');
+            expect(result).toBeDefined;
+        });
     });
-    it('should have show method', () => {
-        expect(store.show).toBeDefined();
+});
+describe('User Model Test methods return correct values', () => {
+    beforeAll(async () => {
+        await store.create({
+            first_name: 'Test',
+            last_name: 'User',
+            password: 'test123'
+        });
     });
-    it('should have create method', () => {
-        expect(store.create).toBeDefined();
+    afterAll(async () => {
+        const conn = await database_1.default.connect();
+        const sql = 'DELETE FROM users; \nALTER SEQUENCE users_id_seq RESTART WITH 1;\n';
+        await conn.query(sql);
+        conn.release();
     });
-    it('create method should add one user', async () => {
+    it('Create method should return a User', async () => {
         const result = await store.create({
-            first_name: 'John',
-            last_name: 'Smith',
-            password: 'password123'
+            first_name: 'Test',
+            last_name: 'User',
+            password: 'test123'
         });
-        expect(result).toEqual({
-            first_name: 'John',
-            last_name: 'Smith'
+        expect(result).toEqual(jasmine.objectContaining({
+            first_name: 'Test',
+            last_name: 'User'
+        }));
+    });
+    it('show method should return array of users', async () => {
+        const result = await store.index();
+        expect(result).toEqual([
+            jasmine.objectContaining({
+                first_name: 'Test',
+                last_name: 'User'
+            })
+        ]);
+    });
+    it('show method should return when called with ID', async () => {
+        const result = await store.show('1');
+        expect(result).toEqual(jasmine.objectContaining({
+            first_name: 'Test',
+            last_name: 'User'
+        }), jasmine.objectContaining({
+            first_name: 'Test',
+            last_name: 'User'
+        }));
+    });
+});
+describe('User Model Endpoints Tests', () => {
+    beforeAll(async () => {
+        await store.create({
+            first_name: 'Test',
+            last_name: 'User',
+            password: 'test123'
         });
     });
-    // it('show method should return list', async() => {
-    //     const result = await store.show('1');
-    //     expect(result).toEqual({
-    //         first_name: 'John',
-    //         last_name: 'Smith'
-    //     })
-    // })
-    // it('index method should return list', async() => {
-    //     const result = await store.index();
-    //     expect(result).toEqual([{
-    //         first_name: 'John',
-    //         last_name: 'Smith'
-    //     }])
-    // })
+    afterAll(async () => {
+        const conn = await database_1.default.connect();
+        const sql = 'DELETE FROM users; \nALTER SEQUENCE users_id_seq RESTART WITH 1;\n';
+        await conn.query(sql);
+        conn.release();
+    });
+    it('Check if server runs, should return 200 status', async () => {
+        const response = await request.get('/');
+        expect(response.status).toBe(200);
+    });
+    it('Test Index should return array of users', async () => {
+        const response = await request
+            .get('/users/all')
+            .set('Content-type', 'application/json');
+        expect(response.status).toBe(200);
+    });
+    it('Test create should return array of users', async () => {
+        const response = await request
+            .post('/users')
+            .send({
+            firstName: 'Test',
+            lastName: 'User2',
+            password: 'test1234'
+        });
+        expect(response.status).toBe(200);
+    });
+    it('Test Show should return array of users', async () => {
+        const response = await request
+            .post('/users')
+            .set('Content-type', 'application/json');
+        expect(response.status).toBe(200);
+    });
+    it('Authenticate user and get token', async () => {
+        const response = await request
+            .post('/users/auth')
+            .set('Content-type', 'application/json')
+            .send({
+            first_name: 'Test',
+            password: 'test123'
+        });
+        expect(response.status).toBe(200);
+        userToken = response.body;
+    });
 });
