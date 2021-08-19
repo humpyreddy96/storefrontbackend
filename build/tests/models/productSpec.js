@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const product_1 = require("../../models/product");
-const database_1 = __importDefault(require("../../database"));
 const supertest_1 = __importDefault(require("supertest"));
 const server_1 = __importDefault(require("../../server"));
 const request = supertest_1.default(server_1.default);
@@ -59,12 +58,6 @@ describe('Product Model', () => {
                 price: 350,
                 category: 'electronics.'
             });
-        });
-        afterAll(async () => {
-            const conn = await database_1.default.connect();
-            const sql = 'DELETE FROM users;\n ALTER SEQUENCE users_id_seq RESTART WITH 1;\nDELETE FROM products;\n ALTER SEQUENCE products_id_seq RESTART WITH 1;\n';
-            await conn.query(sql);
-            conn.release();
         });
         it('Check if server runs, should return 200 status', async () => {
             const response = await request.get('/');

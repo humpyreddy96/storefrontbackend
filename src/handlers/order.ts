@@ -56,7 +56,7 @@ const order_routes = (app: express.Application) => {
     app.post('/orders',verifyToken, create)
     app.get('/orders', index)
     app.get('/orders/:id',verifyToken, show)
-    app.get('/orders/:id/products',verifyToken, addOrder)
+    app.post('/orders/:id/products',verifyToken, addOrder)
   }
 
 export default order_routes

@@ -2,6 +2,10 @@ import {Order, OrderStore} from '../../models/order';
 import {User, UserHub} from '../../models/user';
 import {Product, ProductsStore} from '../../models/product';
 import client from '../../database';
+import supertest from 'supertest';
+import app from '../../server';
+const request = supertest(app);
+
 const orderModel = new OrderStore();
 const userModel = new UserHub();
 const productModel = new ProductsStore();
@@ -73,11 +77,97 @@ describe('Order Model',()=>{
             it('index method should return',async()=>{
                 const result = await orderModel.index();
 
-               expect(result).toEqual(jasmine.objectContaining({
-                   user_id:'1'
-               }))
-            })
+               expect(result).toEqual(jasmine.objectContaining(
+				 
+				[{
+				   id:1,
+                   user_id:'1',
+				   status:'active'
+               },
+			   {
+				id:2,
+				user_id:'1',
+				status:'active'
+			   }]
+			   
+			   ))
+            }) 
+
+
+			it('adding order',async()=>{
+				const result = await orderModel.addOrder({
+					product_id:1,
+					quantity:2,
+					order_id:1
+				});
+
+				expect(result).toEqual(jasmine.objectContaining({
+					order_id:'1'
+				}))
+
+			})
 
         })
     })
+
+	describe('Test EndPoints',()=>{
+
+		beforeAll(async () => {
+			await userModel.create({
+				first_name: 'Test',
+				last_name: 'User',
+				password: 'test123'
+			});
+
+			await productModel.create({
+				name: 'spoon',
+				price: 19,
+				category: 'kitchen'
+			});
+
+			await orderModel.addOrder({
+				product_id:1,
+				quantity:2,
+				order_id:1
+			})
+		});
+
+
+
+		it('Check if server runs, should return 200 status', async () => {
+			const response = await request.get('/');
+			expect(response.status).toBe(200);
+		});
+
+		it('Test Index should return array of products', async () => {
+			const response = await request
+				.get('/orders')
+			expect(response.status).toBe(200);
+		  
+		});
+
+		it('Test Create should return created order', async () => {
+			const response = await request
+				.post('/orders')
+				.send({
+					"user_id":4,
+					"status":"active"
+				});
+			expect(response.status).toBe(401);
+		});
+
+		it('Test Create should return created order', async () => {
+			const response = await request
+				.post('/orders/1/products')
+				.send({
+					"product_id":1,
+					"quantity":2
+				});
+			expect(response.status).toBe(401);
+		});
+
+		
+
+
+	})
 })

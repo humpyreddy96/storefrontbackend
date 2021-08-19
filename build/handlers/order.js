@@ -47,6 +47,6 @@ const order_routes = (app) => {
     app.post('/orders', verifyAuthToken_1.default, create);
     app.get('/orders', index);
     app.get('/orders/:id', verifyAuthToken_1.default, show);
-    app.get('/orders/:id/products', verifyAuthToken_1.default, addOrder);
+    app.post('/orders/:id/products', verifyAuthToken_1.default, addOrder);
 };
 exports.default = order_routes;

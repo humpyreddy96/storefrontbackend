@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const user_1 = require("../../models/user");
-const database_1 = __importDefault(require("../../database"));
 const supertest_1 = __importDefault(require("supertest"));
 const server_1 = __importDefault(require("../../server"));
 const store = new user_1.UserHub();
@@ -34,12 +33,13 @@ describe('User Model', () => {
                 password: 'test123'
             });
         });
-        afterAll(async () => {
-            const conn = await database_1.default.connect();
-            const sql = 'DELETE FROM users; \nALTER SEQUENCE users_id_seq RESTART WITH 1;\n';
-            await conn.query(sql);
-            conn.release();
-        });
+        // afterAll(async () => {
+        // 	const conn = await client.connect();
+        // 	const sql =
+        // 		'DELETE FROM users; \nALTER SEQUENCE users_id_seq RESTART WITH 1;\n';
+        // 	await conn.query(sql);
+        // 	conn.release();
+        // });
         it('Create method should return a User', async () => {
             const result = await store.create({
                 first_name: 'Test',
@@ -77,12 +77,13 @@ describe('User Model', () => {
                 password: 'test123'
             });
         });
-        afterAll(async () => {
-            const conn = await database_1.default.connect();
-            const sql = 'DELETE FROM users; \nALTER SEQUENCE users_id_seq RESTART WITH 1;\n';
-            await conn.query(sql);
-            conn.release();
-        });
+        // afterAll(async () => {
+        // 	const conn = await client.connect();
+        // 	const sql =
+        // 		'DELETE FROM users; \nALTER SEQUENCE users_id_seq RESTART WITH 1;\n';
+        // 	await conn.query(sql);
+        // 	conn.release();
+        // });
         it('Check if server runs, should return 200 status', async () => {
             const response = await request.get('/');
             expect(response.status).toBe(200);

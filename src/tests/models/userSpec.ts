@@ -40,13 +40,13 @@ describe('User Model', () => {
             })
         })
 
-    	afterAll(async () => {
-			const conn = await client.connect();
-			const sql =
-				'DELETE FROM users; \nALTER SEQUENCE users_id_seq RESTART WITH 1;\n';
-			await conn.query(sql);
-			conn.release();
-		});
+    	// afterAll(async () => {
+		// 	const conn = await client.connect();
+		// 	const sql =
+		// 		'DELETE FROM users; \nALTER SEQUENCE users_id_seq RESTART WITH 1;\n';
+		// 	await conn.query(sql);
+		// 	conn.release();
+		// });
     
     
       
@@ -101,13 +101,13 @@ describe('User Model', () => {
         });
     
      
-		afterAll(async () => {
-			const conn = await client.connect();
-			const sql =
-				'DELETE FROM users; \nALTER SEQUENCE users_id_seq RESTART WITH 1;\n';
-			await conn.query(sql);
-			conn.release();
-		});
+		// afterAll(async () => {
+		// 	const conn = await client.connect();
+		// 	const sql =
+		// 		'DELETE FROM users; \nALTER SEQUENCE users_id_seq RESTART WITH 1;\n';
+		// 	await conn.query(sql);
+		// 	conn.release();
+		// });
     
         it('Check if server runs, should return 200 status', async () => {
             const response = await request.get('/');

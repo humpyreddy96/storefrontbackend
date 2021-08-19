@@ -74,15 +74,6 @@ describe('Products Test Endpoints',()=>{
         });
     });
 
-    afterAll(async () => {
-        const conn = await client.connect();
-        const sql =
-            'DELETE FROM users;\n ALTER SEQUENCE users_id_seq RESTART WITH 1;\nDELETE FROM products;\n ALTER SEQUENCE products_id_seq RESTART WITH 1;\n';
-        await conn.query(sql);
-        conn.release();
-    });
-
-
     it('Check if server runs, should return 200 status', async () => {
         const response = await request.get('/');
         expect(response.status).toBe(200);
