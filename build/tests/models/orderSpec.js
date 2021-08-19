@@ -1,65 +1,67 @@
 "use strict";
-// import {Order, OrderStore} from '../../models/order';
-// import {User, UserHub} from '../../models/user';
-// import {Product, ProductsStore} from '../../models/product';
-// const store = new OrderStore();
-// const userStore = new UserHub();
-// const productStore = new ProductsStore();
-// describe('Order model - ', () => {
-//     beforeAll(async()=>{
-//         await productStore.create({
-//             name: 'spoon',
-//             price: 10,
-//             category: 'kitchen'
-//         })
-//         await userStore.create({
-//             first_name: 'John',
-//             last_name: 'Smith',
-//             password: 'password123'
-//         });
-//     })
-//     it('should have index method', () => {
-//         expect(store.index).toBeDefined();
-//     })
-//     it('should have show method', () => {
-//         expect(store.show).toBeDefined();
-//     })
-//     it('should have create method', () => {
-//         expect(store.create).toBeDefined();
-//     })
-//     it('create method should add 1 order', async() =>{
-//         const result = await store.create({
-//             status: 'active',
-//             user_id: 1,
-//             product_id:1,
-//             quantity:1
-//         })
-//         expect(result).toEqual({
-//             id:1,
-//             user_id: 1,
-//             product_id:1,
-//             quantity:1,
-//             status: 'active'
-//         });
-//     })
-//     // it('index method should return list', async() => {
-//     //     const result = await store.index();
-//     //     expect(result).toEqual([{
-//     //         id:1,
-//     //         status: 'active',
-//     //         user_id: 1,
-//     //         product_id:1,
-//     //         quantity:1
-//     //     }])
-//     // })
-//     // it('show method should return single order', async () => {
-//     //     const result = await store.show('1');
-//     //     expect(result).toEqual({
-//     //         id:1,
-//     //         status: 'active',
-//     //         user_id: 1,
-//     //         product_id:1,
-//     //         quantity:1
-//     //     })
-//     // })
-// })
+Object.defineProperty(exports, "__esModule", { value: true });
+const order_1 = require("../../models/order");
+const user_1 = require("../../models/user");
+const product_1 = require("../../models/product");
+const orderModel = new order_1.OrderStore();
+const userModel = new user_1.UserHub();
+const productModel = new product_1.ProductsStore();
+describe('Order Model', () => {
+    describe('Test Method Exists -', () => {
+        it('Index method should exist', () => {
+            expect(orderModel.index).toBeDefined();
+        });
+        it('Show method should exist', () => {
+            expect(orderModel.show).toBeDefined();
+        });
+        it('Create method should exist', () => {
+            expect(orderModel.create).toBeDefined();
+        });
+        it('Create method should exist', () => {
+            expect(orderModel.addOrder).toBeDefined();
+        });
+    });
+    describe('Test Methods returning values are correct ', () => {
+        beforeAll(async () => {
+            await userModel.create({
+                first_name: 'Test',
+                last_name: 'User',
+                password: 'test123'
+            });
+            await productModel.create({
+                name: 'spoon',
+                price: 19,
+                category: 'kitchen'
+            });
+        });
+        // afterAll(async () => {
+        // 	const conn = await client.connect();
+        // 	const sql =
+        // 		'DELETE FROM users;\n ALTER SEQUENCE users_id_seq RESTART WITH 1;\nDELETE FROM products;\n ALTER SEQUENCE products_id_seq RESTART WITH 1;\n';
+        // 	await conn.query(sql);
+        // 	conn.release();
+        // });
+        describe('Order Methods', () => {
+            // afterAll(async () => {
+            // 	const conn = await client.connect();
+            // 	const sql = 'ALTER SEQUENCE orders_id_seq RESTART WITH 1;\n';
+            // 	conn.query(sql);
+            // });
+            it('Create method should return an order', async () => {
+                const result = await orderModel.create({
+                    user_id: 1,
+                    status: 'active'
+                });
+                expect(result).toEqual(jasmine.objectContaining({
+                    user_id: '1'
+                }));
+            });
+            it('index method should return', async () => {
+                const result = await orderModel.index();
+                expect(result).toEqual(jasmine.objectContaining({
+                    user_id: '1'
+                }));
+            });
+        });
+    });
+});

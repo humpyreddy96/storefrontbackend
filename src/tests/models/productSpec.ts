@@ -16,14 +16,7 @@ describe('Product Model',()=>{
         })
     })
 
-    afterAll(async () => {
-        const conn = await client.connect();
-        const sql =
-            'DELETE FROM users;\n ALTER SEQUENCE users_id_seq RESTART WITH 1;\nDELETE FROM products;\n ALTER SEQUENCE products_id_seq RESTART WITH 1;\n';
-        await conn.query(sql);
-        conn.release();
-    });
-
+ 
 
     it('should have index method', () => {
         expect(store.index).toBeDefined();
@@ -37,46 +30,40 @@ describe('Product Model',()=>{
         expect(store.create).toBeDefined();
     })
 
-    it('create method should add one product', async() =>{
-        const result = await store.create({
-            name: 'spoon',
-            price: 10,
-            category: 'kitchen'
-        })
-        expect(result).toEqual(jasmine.objectContaining({
-            name: 'spoon',
-            price: 10,
-            category: 'kitchen'
-        }));
-    })
 
-    it('index method should return list', async() => {
-        const result = await store.index();
-     expect(result).toEqual([
-				jasmine.objectContaining({
-					category: 'kitchen'
-				}),
-                jasmine.objectContaining({
-					category: 'kitchen'
-				})
-            
-			]);
-    })
-
-    it('Show method should return widget when called with ID', async () => {
-        const result = await store.show('1');
-        expect(result).toEqual(
-            jasmine.objectContaining({
-                name: 'spoon'
+    describe('Test Methods',()=>{
+        it('create method should add one product', async() =>{
+            const result = await store.create({
+                name: 'spoon',
+                price: 10,
+                category: 'kitchen'
             })
-        );
-    });
+            expect(result).toEqual(jasmine.objectContaining({
+                name: 'spoon',
+                price: 10,
+                category: 'kitchen'
+            }));
+        })
     
+        it('index method should return list', async() => {
+            const result = await store.index();
+            expect(result[0]).toEqual(jasmine.objectContaining({
+                category:'kitchen'
+            }))
+        })
+    
+        it('Show method should return widget when called with ID', async () => {
+            const result = await store.show('1');
+            expect(result).toEqual(jasmine.objectContaining({
+                category:'kitchen'
+            }))
+        });
+       
+    })
 
    
-})
 
-
+    
 describe('Products Test Endpoints',()=>{
 
     beforeAll(async () => {
@@ -126,3 +113,5 @@ describe('Products Test Endpoints',()=>{
         expect(response.status).toBe(200);
     });
 })
+})
+
