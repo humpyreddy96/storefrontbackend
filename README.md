@@ -114,7 +114,7 @@ Install Dependencies
     ```
     http://localhost:3000/products/
     ```
-    * Request Body
+    Request Body
 
     ```
     {
