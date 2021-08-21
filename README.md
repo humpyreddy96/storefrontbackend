@@ -110,12 +110,46 @@ Install Dependencies
 #### __Products__
 
 1. Create Product (POST)
+
+      ```
+    http://localhost:3000/users/auth
+    ```
+
 2. Get Product (GET)
+
+  ```
+    http://localhost:3000/users/auth
+    ```
+
 3. Get all Products (GET)
+
+  ```
+    http://localhost:3000/users/auth
+    ```
 
 ### __Orders__
 
 1. Create Order (POST)
+
+  ```
+    http://localhost:3000/users/auth
+    ```
+
 2. Adding Product to Order (POST)
+
+  ```
+    http://localhost:3000/users/auth
+    ```
+
 3. Get Order (GET)
+
+  ```
+    http://localhost:3000/users/auth
+    ```
+
 4. Getting all Orders(GET)
+
+  ```
+    http://localhost:3000/users/auth
+    ```
+    
