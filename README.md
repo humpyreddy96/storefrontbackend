@@ -176,11 +176,42 @@ Install Dependencies
       ```
     http://localhost:3000/users/auth
     ```
+        Request Body
+    ```
+    {
+        "user_id": <user_id (number)>,
+        "status" : <status  (string)>
+    }
+    ```
+    Response Body
+    ```
+    {
+        "id" : <id (number)>
+        "user_id": <user_id (number)>,
+        "status" : <status  (string)>,
+    }
+    ```
 
 2. Adding Product to Order (POST)
 
      ```
     http://localhost:3000/users/auth
+    ```
+        Request Body
+    ```
+    {
+        "product_id": <product_id (number)>,
+        "quantity" : <quantity  (number)>
+    }
+    ```
+    Response Body
+    ```
+    {
+        "id":<id (number)>
+        "product_id": <product_id (number)>,
+        "order_id": <order_id (number)>
+        "quantity" : <quantity  (string)>,
+    }
     ```
 
 3. Get Order (GET)
@@ -189,8 +220,26 @@ Install Dependencies
     http://localhost:3000/users/auth
     ```
 
+    Response Body
+    ```
+    {
+        "id" : <id (number)>
+        "user_id": <user_id (number)>,
+        "status" : <status  (string)>,
+    }
+    ```
+
 4. Getting all Orders(GET)
 
     ```
     http://localhost:3000/users/auth
+    ```
+
+    Response Body
+    ```
+    {
+        "id" : <id (number)>
+        "user_id": <user_id (number)>,
+        "status" : <status  (string)>,
+    }
     ```
