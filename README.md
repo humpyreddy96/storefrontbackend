@@ -114,7 +114,8 @@ Install Dependencies
     ```
     http://localhost:3000/products/
     ```
-       *Request Body
+    * Request Body
+
     ```
     {
         "name": <name (string)>,
@@ -122,7 +123,8 @@ Install Dependencies
         "category": <category (string)>
     }
     ```
-     *Response Body
+    * Response Body
+
     ```
     {
         "id":1,
@@ -138,7 +140,8 @@ Install Dependencies
     http://localhost:3000/products/:id
     ```
 
-     *Response Body
+    * Response Body
+
     ```
     {
         "id":1,
@@ -155,7 +158,8 @@ Install Dependencies
     http://localhost:3000/products/all
     ```
 
-        *Response Body
+     * Response Body
+     
     ```
     {
         "id":1,
