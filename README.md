@@ -108,3 +108,14 @@ Install Dependencies
     ```
 
 #### __Products__
+
+1. Create Product (POST)
+2. Get Product (GET)
+3. Get all Products (GET)
+
+### __Orders__
+
+1. Create Order (POST)
+2. Adding Product to Order (POST)
+3. Get Order (GET)
+4. Getting all Orders(GET)
