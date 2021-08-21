@@ -60,9 +60,11 @@ Install Dependencies
     }
     ```
  2. Get all users (Method:GET)
+
      ``` 
      http://localhost:3000/users/all
     ```
+
      *Response Body
     ```
     {
@@ -72,9 +74,11 @@ Install Dependencies
     ```
 
  3. Get a specific user (GET)
+
    ```
     http://localhost:3000/users/:id
     ```
+
      *Response Body
     ```
     {
@@ -82,10 +86,13 @@ Install Dependencies
         "lastname" : <lastname  (string)>,
     }
     ```
+
  4. Authenticate User (POST)
+
     ```
     http://localhost:3000/users/auth
     ```
+    
        *Request Body
     ```
     {
@@ -99,4 +106,5 @@ Install Dependencies
         "token": <token (string)>,
     }
     ```
+    
 #### __Products__
