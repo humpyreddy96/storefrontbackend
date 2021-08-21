@@ -112,21 +112,59 @@ Install Dependencies
 1. Create Product (POST)
 
     ```
-    http://localhost:3000/users/auth
+    http://localhost:3000/products/
+    ```
+       *Request Body
+    ```
+    {
+        "name": <name (string)>,
+        "price" : <price  (number)>,
+        "category": <category (string)>
+    }
+    ```
+     *Response Body
+    ```
+    {
+        "id":1,
+        "name": <name (string)>,
+        "price" : <price  (number)>,
+        "category": <category (string)>
+    }
     ```
 
 2. Get Product (GET)
 
     ```
-    http://localhost:3000/users/auth
+    http://localhost:3000/products/:id
     ```
+
+     *Response Body
+    ```
+    {
+        "id":1,
+        "name": <name (string)>,
+        "price" : <price  (number)>,
+        "category": <category (string)>
+    }
+    ```
+    
 
 3. Get all Products (GET)
 
     ```
-    http://localhost:3000/users/auth
+    http://localhost:3000/products/all
     ```
 
+     *Response Body
+    ```
+    {
+        "id":1,
+        "name": <name (string)>,
+        "price" : <price  (number)>,
+        "category": <category (string)>
+    }
+    ```
+    
 ### __Orders__
 
 1. Create Order (POST)
