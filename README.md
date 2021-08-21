@@ -41,7 +41,8 @@ Install Dependencies
 #### __Users__
  1. Create a new user (POST)
 
-    ``` http://localhost:3000/users/
+    ```
+     http://localhost:3000/users/
     ```
     *Request Body
     ```
@@ -59,7 +60,8 @@ Install Dependencies
     }
     ```
  2. Get all users (Method:GET)
-     ``` http://localhost:3000/users/all
+     ``` 
+     http://localhost:3000/users/all
     ```
      *Response Body
     ```
@@ -70,7 +72,8 @@ Install Dependencies
     ```
 
  3. Get a specific user (GET)
-   ``` http://localhost:3000/users/:id
+   ```
+    http://localhost:3000/users/:id
     ```
      *Response Body
     ```
