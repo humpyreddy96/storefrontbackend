@@ -38,9 +38,12 @@ Install Dependencies
 - `yarn run start`
 
 ## API List
-* Users
- 1. Create a new user (Method: POST)
-    Request Body
+#### __Users__
+ 1. Create a new user (POST)
+
+    ``` http://localhost:3000/users/
+    ```
+    *Request Body
     ```
     {
         "firstname": <firstname (string)>,
@@ -48,5 +51,49 @@ Install Dependencies
         "password" : <password  (string)>
     }
     ```
+     *Response Body
+    ```
+    {
+        "firstname": <firstname (string)>,
+        "lastname" : <lastname  (string)>,
+    }
+    ```
  2. Get all users (Method:GET)
- 3. Get a specific user (Method:GET)
+     ``` http://localhost:3000/users/all
+    ```
+     *Response Body
+    ```
+    {
+        "firstname": <firstname (string)>,
+        "lastname" : <lastname  (string)>,
+    }
+    ```
+
+ 3. Get a specific user (GET)
+   ``` http://localhost:3000/users/:id
+    ```
+     *Response Body
+    ```
+    {
+        "firstname": <firstname (string)>,
+        "lastname" : <lastname  (string)>,
+    }
+    ```
+ 4. Authenticate User (POST)
+    ```
+    http://localhost:3000/users/auth
+    ```
+       *Request Body
+    ```
+    {
+        "firstname": <firstname (string)>,
+        "password" : <password  (string)>
+    }
+    ```
+     *Response Body
+    ```
+    {
+        "token": <token (string)>,
+    }
+    ```
+#### __Products__
