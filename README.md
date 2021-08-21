@@ -75,8 +75,8 @@ Install Dependencies
 
  3. Get a specific user (GET)
 
-   ```
-    http://localhost:3000/users/:id
+     ``` 
+     http://localhost:3000/users/all
     ```
 
      *Response Body
@@ -106,5 +106,5 @@ Install Dependencies
         "token": <token (string)>,
     }
     ```
-    
+
 #### __Products__
