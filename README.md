@@ -44,7 +44,7 @@ Install Dependencies
     ```
      http://localhost:3000/users/
     ```
-    *Request Body
+        Request Body
     ```
     {
         "firstname": <firstname (string)>,
@@ -52,7 +52,7 @@ Install Dependencies
         "password" : <password  (string)>
     }
     ```
-     *Response Body
+    Response Body
     ```
     {
         "firstname": <firstname (string)>,
@@ -65,7 +65,7 @@ Install Dependencies
      http://localhost:3000/users/all
     ```
 
-     *Response Body
+    Response Body
     ```
     {
         "firstname": <firstname (string)>,
@@ -79,7 +79,7 @@ Install Dependencies
      http://localhost:3000/users/all
     ```
 
-     *Response Body
+    Response Body
     ```
     {
         "firstname": <firstname (string)>,
@@ -93,14 +93,14 @@ Install Dependencies
     http://localhost:3000/users/auth
     ```
     
-       *Request Body
+    Request Body
     ```
     {
         "firstname": <firstname (string)>,
         "password" : <password  (string)>
     }
     ```
-     *Response Body
+    Response Body
     ```
     {
         "token": <token (string)>,
@@ -123,7 +123,7 @@ Install Dependencies
         "category": <category (string)>
     }
     ```
-    * Response Body
+    Response Body
 
     ```
     {
@@ -140,7 +140,7 @@ Install Dependencies
     http://localhost:3000/products/:id
     ```
 
-    * Response Body
+    Response Body
 
     ```
     {
@@ -158,7 +158,7 @@ Install Dependencies
     http://localhost:3000/products/all
     ```
 
-    * Response Body
+    Response Body
 
     ```
     {
