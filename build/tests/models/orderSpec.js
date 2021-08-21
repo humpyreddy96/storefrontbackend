@@ -39,6 +39,11 @@ describe('Order Model', () => {
                 price: 19,
                 category: 'kitchen'
             });
+            await orderModel.create({
+                id: 1,
+                user_id: 1,
+                status: 'active'
+            });
         });
         // afterAll(async () => {
         // 	const conn = await client.connect();
@@ -64,16 +69,13 @@ describe('Order Model', () => {
             });
             it('index method should return', async () => {
                 const result = await orderModel.index();
-                expect(result).toEqual(jasmine.objectContaining([{
+                expect(result).toEqual(jasmine.objectContaining([
+                    {
                         id: 1,
                         user_id: '1',
                         status: 'active'
-                    },
-                    {
-                        id: 2,
-                        user_id: '1',
-                        status: 'active'
-                    }]));
+                    }
+                ]));
             });
             it('adding order', async () => {
                 const result = await orderModel.addOrder({
