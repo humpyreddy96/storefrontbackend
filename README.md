@@ -155,7 +155,7 @@ Install Dependencies
     http://localhost:3000/products/all
     ```
 
-     *Response Body
+    *Response Body
     ```
     {
         "id":1,
