@@ -38,5 +38,15 @@ Install Dependencies
 - `yarn run start`
 
 ## API List
-
+* Users
  1. Create a new user (Method: POST)
+    Request Body
+    ```
+    {
+        "firstname": <firstname (string)>,
+        "lastname" : <lastname  (string)>,
+        "password" : <password  (string)>
+    }
+    ```
+ 2. Get all users (Method:GET)
+ 3. Get a specific user (Method:GET)
