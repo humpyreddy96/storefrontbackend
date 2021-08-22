@@ -140,7 +140,7 @@ Note: This token is to be put in the bearer token in the header in the below end
 
 1. Create Order (POST)
 
-Token to be used here
+- Token to be used here
 
       ```
     http://localhost:3000/orders
