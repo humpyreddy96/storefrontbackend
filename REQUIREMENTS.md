@@ -45,6 +45,8 @@ status | VARCHAR
 
 # Orders Product
 
+- Creating an order with the product (args:order_id) [token required]
+
 Column | Type
 -------|-------
 id |integer
