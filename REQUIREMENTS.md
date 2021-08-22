@@ -1,7 +1,3 @@
-# API Requirements
-The company stakeholders want to create an online storefront to showcase their great product ideas. Users need to be able to browse an index of all products, see the specifics of a single product, and add products to an order that they can view in a cart page. You have been tasked with building the API that will support this application, and your coworker is building the frontend.
-
-These are the notes from a meeting with the frontend developer that describe what endpoints the API needs to supply, as well as data shapes the frontend and backend have agreed meet the requirements of the application. 
 
 ## API Endpoints
 
@@ -28,7 +24,7 @@ These are the notes from a meeting with the frontend developer that describe wha
         "lastname" : <lastname  (string)>,
     }
     ```
- 2. Get all users (Method:GET)
+ 2. Get all users (GET)
 
      ``` 
      http://localhost:3000/users/all
@@ -144,7 +140,7 @@ Note: This token is to be put in the bearer token in the header in the below end
 
 1. Create Order (POST)
 
- - Token to be used here
+Token to be used here
 
       ```
     http://localhost:3000/orders
@@ -167,7 +163,7 @@ Note: This token is to be put in the bearer token in the header in the below end
 
 2. Adding Product to Order (POST)
 
- - Token to be used here
+Token to be used here
 
      ```
     http://localhost:3000/orders/:id/products
@@ -207,7 +203,7 @@ Note: This token is to be put in the bearer token in the header in the below end
 
 4. Getting all Orders(GET)
 
- - Token to be used here
+Token to be used here
 
     ```
     http://localhost:3000/orders/
