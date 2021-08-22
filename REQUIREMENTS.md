@@ -24,11 +24,34 @@ password_digest| VARCHAR(100)
 - Show (args: product id)
 - Create (args: product)
 
+Column | Type
+-------|-------
+id |integer
+name | VARCHAR(50)
+price | integer
+category | text
+
 # Orders
 - Index 
 - Show(args:order_id)
 - Create Order (Order)[token required]
 - Creating an order with the product (args:order_id) [token required]
+
+Column | Type
+-------|-------
+id |integer
+user_id | bigint
+status | VARCHAR
+
+# Orders Product
+
+Column | Type
+-------|-------
+id |integer
+quantity | integer
+order_id | bigint
+product_id|bigint
+
 
 
 ## API Endpoints
