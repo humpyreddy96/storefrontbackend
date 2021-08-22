@@ -163,7 +163,7 @@ Token to be used here
 
 2. Adding Product to Order (POST)
 
-Token to be used here
+ - Token to be used here
 
      ```
     http://localhost:3000/orders/:id/products
@@ -203,7 +203,7 @@ Token to be used here
 
 4. Getting all Orders(GET)
 
-Token to be used here
+ - Token to be used here
 
     ```
     http://localhost:3000/orders/
